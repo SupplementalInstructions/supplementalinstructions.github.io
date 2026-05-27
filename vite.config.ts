@@ -4,7 +4,8 @@ import path from 'path';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/',
+  // Kept as '/' because your repo matches your custom user/org URL domain
+  base: '/', 
 
   plugins: [
     react(),
@@ -13,7 +14,8 @@ export default defineConfig({
 
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, '.'),
+      // Maps the '@' shortcut directly to your source files directory
+      '@': path.resolve(__dirname, './src'), 
     },
   },
 
