@@ -1,28 +1,24 @@
-// vite.config.ts (Corrected Base Logic)
+
+import tailwindcss from '@tailwindcss/vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
+import { defineConfig } from 'vite';
+
 export default defineConfig(() => {
   return {
-    base: (() => {
-      if (process.env.GITHUB_REPOSITORY) {
-        const parts = process.env.GITHUB_REPOSITORY.split('/');
-        const owner = parts[0]?.toLowerCase() || '';
-        const repo = parts[1] || '';
-        
-        // If it's a user/organization core page (owner.github.io), the site is served at root '/'
-        if (repo.toLowerCase() === `${owner}.github.io`) {
-          return '/';
-        }
-        
-        // Otherwise, it's a project page served at sub-path '/repo/'
-        return `/${repo}/`;
-      }
-      return '/';
-    })(),
+    base: '/supplementalinstructions.github.io/',
+
     plugins: [react(), tailwindcss()],
+
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),
       },
     },
-    // ...
+
+    server: {
+      hmr: process.env.DISABLE_HMR !== 'true',
+      watch: process.env.DISABLE_HMR === 'true' ? null : {},
+    },
   };
 });
