@@ -1,0 +1,6 @@
+{
+  "name": "Supplemental Instruction",
+  "description": "Your Personal Growth Laboratory - Premium personal development, coaching, and transformation platform.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
