@@ -1,6 +1,7 @@
+# Auto-detect text files and normalize line endings
 * text=auto
 
-# TypeScript and JavaScript files should always be treated as text
+# Core Source Files (Enforce LF line endings for cross-platform consistency)
 *.ts text eol=lf
 *.tsx text eol=lf
 *.js text eol=lf
@@ -9,10 +10,23 @@
 *.html text eol=lf
 *.css text eol=lf
 
-# Binary files
+# Documentation and Configurations
+*.md text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+
+# Assets and Vector Graphics
+*.svg text eol=lf
+
+# Binary Assets (Explicitly mark to prevent git corruption)
 *.png binary
 *.jpg binary
+*.jpeg binary
 *.gif binary
 *.ico binary
+*.webp binary
 *.woff binary
 *.woff2 binary
+*.ttf binary
