@@ -20,7 +20,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'npm'
 
       - name: Install Dependencies
@@ -29,7 +29,10 @@ jobs:
       - name: Build Application
         run: npm run build
 
-      - name: Build and Deploy to gh-pages branch
+      - name: Disable Jekyll
+        run: touch ./dist/.nojekyll
+
+      - name: Deploy to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
