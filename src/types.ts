@@ -1,5 +1,5 @@
 /**
- * Supplemental Instruction - TypeScript Declarations and Shared Core Mock Data
+ * Supplemental Instruction LLC (S-H) - TypeScript Declarations and Shared Core Mock Data
  */
 
 export interface FocusArea {
@@ -57,49 +57,49 @@ export interface NFTCertificate {
 }
 
 // ==========================================
-// SEED MOCK DATA
+// SEED MOCK DATA (AUTHENTIC & VALUE-DRIVEN)
 // ==========================================
 
 export const INITIAL_FOCUS_AREAS: FocusArea[] = [
   {
-    id: "health-fitness",
-    title: "Health & Fitness",
-    description: "Build robust physical health, optimize nutrition, master circadian rhythms, and foster daily workout discipline.",
-    longDescription: "Physical health is the engine of high achievement. Engage with biometric tracking metrics, tailored workout discipline sequences, and clean energy optimization guides.",
-    iconName: "Activity",
-    accentColor: "#2ECC71", // Green
-    metric: "4 Consecutive Workouts Done",
-    completionRate: 85
+    id: "thrive-mode",
+    title: "Thrive Mode",
+    description: "Align your physical vitality, master circadian sleep logs, curate clean macro nutrition, and cultivate daily training consistency.",
+    longDescription: "Thrive Mode is the physical engine of psychological transformation. It transitions candidates away from erratic survival fatigue into sustained systemic energy, supported by daily biometric tracking systems.",
+    iconName: "Flame",
+    accentColor: "#0D9488", // Teal/Emerald Green Accent
+    metric: "7-Day Energy Calibration Complete",
+    completionRate: 94
   },
   {
-    id: "investing-finance",
-    title: "Investing & Finance",
-    description: "Accelerate wealth builders, compound saving plans, decode market index essentials, and master money models.",
-    longDescription: "Financial autonomy is key. We integrate structured micro-sessions in value investing, tax asset management, compound models, and systematic budget automation.",
+    id: "reading-culture",
+    title: "Reading Culture & Compound Authors",
+    description: "Build deep intellectual capital. Learn ideas from classic and modern authors that compound mental assets over time.",
+    longDescription: "Our book clubs, accountability circles, and verified reading reviews turn cognitive literature into active, applied wisdom. No shallow scrolling, just compound intellectual assets.",
+    iconName: "BookOpen",
+    accentColor: "#4F46E5", // Indigo/Grape Accent
+    metric: "Stoicism Syllabus Mastered",
+    completionRate: 88
+  },
+  {
+    id: "alchemy-entrepreneurship",
+    title: "Alchemy Entrepreneurship",
+    description: "Master early wealth models, compound saving structures, and systematic budget automation to fund a life of freedom and travel.",
+    longDescription: "Reject toxic burnout hustle. Leverage structured asset-compounding principles and lightweight digital business engineering to achieve financial autonomy, security, and world adventure.",
     iconName: "TrendingUp",
-    accentColor: "#00D1FF", // Electric Cyan
-    metric: "Asset Allocation Calibrated",
-    completionRate: 64
+    accentColor: "#D97706", // Solar Gold Accent
+    metric: "Compounding Models Completed",
+    completionRate: 76
   },
   {
-    id: "self-improvement",
-    title: "Self-Improvement",
-    description: "Enhance mental focus patterns, maximize active focus sprints, block digital distractions, and craft clear thinking.",
-    longDescription: "Your personal laboratory for building active mindfulness, habit automation, deliberate study routines, and deep flow states on command.",
-    iconName: "Target",
-    accentColor: "#F39C12", // Amber/Gold
-    metric: "12-Day Focus Active Streak",
-    completionRate: 92
-  },
-  {
-    id: "spiritual-growth",
-    title: "Spiritual Growth",
-    description: "Foster inner stillness, compound gratitude loops, align baseline virtues, and develop profound stoic resilience.",
-    longDescription: "A secular, scientific space to connect with deep purpose, calibrate moral framework integrity, practice mindful self-reflection, and form intentional community links.",
+    id: "mental-wellness",
+    title: "Mental Wellness & Resilience",
+    description: "Cultivate robust emotional grounding, compound gratitude frameworks, practice aligned focus stillness, and forge stoic resilience.",
+    longDescription: "A scientific and human-first approach to emotional wellbeing. Build mental resilience, cultivate present-moment awareness, and define your personal virtue models under certified guide supervision.",
     iconName: "Compass",
-    accentColor: "#9B59B6", // Purple
-    metric: "10m Deep Stillness Completed Today",
-    completionRate: 78
+    accentColor: "#7C3AED", // Royal Purple Accent
+    metric: "Daily Core Alignment Logged",
+    completionRate: 82
   },
 ];
 
@@ -111,44 +111,44 @@ export const INITIAL_COACHES: Coach[] = [
     rating: 4.9,
     availability: "Available Next Tuesday",
     price: "$120/hr",
-    avatar: "from-cyan-500 to-blue-600",
-    bio: "Former neuroscience researcher focused on turning neuroplasticity research into practical daily routines for builders and engineers.",
+    avatar: "from-[#0F766E] to-[#0D9488]",
+    bio: "Former neuroscience researcher focused on turning neuroplasticity research into practical daily routines for builders, creators, and engineers.",
     studentsCount: 142,
     featured: true
   },
   {
     id: "c2",
     name: "Amina Al-Mansoor",
-    specialty: "SaaS Systems & Compound Financial Growth",
+    specialty: "Alchemy Entrepreneurship & Wealth Compounds",
     rating: 4.8,
     availability: "Available Tomorrow",
     price: "$150/hr",
-    avatar: "from-emerald-400 to-teal-600",
-    bio: "Venture partner and personal finance mentor. Specializes in budgeting frameworks, scale models, and early wealth compounds.",
+    avatar: "from-indigo-600 to-indigo-800",
+    bio: "Growth consultant and personal finance mentor. Specializes in leverage models, compound budget loops, and sustainable digital freedom strategies.",
     studentsCount: 98,
     featured: true
   },
   {
     id: "c3",
     name: "Marcus Aurel Sterling",
-    specialty: "Stoic Resilience & Extreme Discipline Systems",
+    specialty: "Thrive Mode Catalyst & Peak Vitality Systems",
     rating: 5.0,
     availability: "3 Slots Open This Week",
     price: "$180/hr",
-    avatar: "from-amber-500 to-orange-600",
-    bio: "Ex-athletics coach and certified mindfulness trainer. Empowers elite performers to master internal impulse controls and forge bulletproof focus.",
+    avatar: "from-amber-600 to-amber-800",
+    bio: "Ex-athletics coach and certified endurance trainer. Empowers candidates to optimize biological performance rhythms and build bulletproof mental endurance.",
     studentsCount: 210,
     featured: true
   },
   {
     id: "c4",
     name: "Rev. Sister Beatrice",
-    specialty: "Spiritual Alignment & Secular Stoicism",
+    specialty: "Mental Wellness Guide & Timeless Stoicism",
     rating: 4.7,
     availability: "Bookings Open Now",
     price: "$95/hr",
-    avatar: "from-purple-500 to-indigo-600",
-    bio: "Theology master and meditation facilitator integrating timeless mindfulness tools with daily action and professional alignment.",
+    avatar: "from-purple-600 to-purple-850",
+    bio: "Mindfulness facilitator integrating classic stoic scripts with modern emotional resilience models to establish daily workspace stillness.",
     studentsCount: 75,
     featured: false
   }
@@ -160,56 +160,56 @@ export const MOCK_TESTIMONIALS: Testimonial[] = [
     name: "Devin Kimbrough",
     role: "Senior Software Engineer",
     location: "Nairobi, Kenya",
-    text: "Supplemental Instruction provided the systematic guardrails I desperately needed. Combining active financial compounds with cognitive work led to my most productive year.",
+    text: "Supplemental Instruction provided the systematic guardrails I desperately needed. Combining applied financial compounding with cognitive focus routines led to my most productive, stress-free year.",
     avatar: "DK",
     rating: 5,
-    focus: "Self-Improvement"
+    focus: "Mental Wellness & Resilience"
   },
   {
     id: "t2",
     name: "Olivia Chen",
     role: "Fintech Growth Lead",
     location: "Singapore",
-    text: "The gamified rewards and NFT credential validation make progress incredibly addictive. It's a next-generation laboratory that has completely redefined how I plan my quarters.",
+    text: "The beautifully structured physical booklets and active community groups keep me extremely grounded. It's a next-generation growth ecosystem that has completely transformed my relationship with work.",
     avatar: "OC",
     rating: 5,
-    focus: "Investing & Finance"
+    focus: "Alchemy Entrepreneurship"
   },
   {
     id: "t3",
     name: "Tariq Sowande",
     role: "Medical Student",
     location: "Lagos, Nigeria",
-    text: "Studying medicine is exhausting, but the daily focus tracks and stoic resilience systems kept my physical health and spiritual grounding completely aligned. Highly recommend!",
+    text: "Medical studies are exhausting, but integrating Thrive Mode circadian tracking with peer accountability book clubs has kept my health and focus at their highest possible levels.",
     avatar: "TS",
     rating: 5,
-    focus: "Spiritual Growth"
+    focus: "Reading Culture & Books"
   }
 ];
 
 export const INITIAL_BADGES: Badge[] = [
   {
     id: "b1",
-    title: "Streak Star",
-    description: "Maintain a uninterrupted 7-day habits completion loop in any category.",
+    title: "Thrive Mode Starter",
+    description: "Complete 7 consecutive daily physical training and sleep logs.",
     unlockedAt: "2026-05-22",
-    requirement: "Complete 7 days of items",
+    requirement: "Complete 7 days of biometrics",
     iconType: "fire"
   },
   {
     id: "b2",
-    title: "Habit Hero",
-    description: "Complete more than 50 micro-routines in any laboratory field.",
+    title: "Compound Reader",
+    description: "Submit 5 reviewed core chapter summaries on wisdom literature.",
     unlockedAt: "2026-05-23",
-    requirement: "Log 50 routine completions",
+    requirement: "Log 5 validated reading reviews",
     iconType: "shield"
   },
   {
     id: "b3",
-    title: "Goal Master",
-    description: "Fully master three concurrent focus areas with a 90% execution score.",
+    title: "Integration Master",
+    description: "Achieve a 90% calibration score across nutrition, focus, and reading lists.",
     unlockedAt: null,
-    requirement: "Achieve 90% completion rate in 3 categories",
+    requirement: "Sustain 90% consistency across three verticals",
     iconType: "trophy"
   }
 ];
@@ -217,20 +217,20 @@ export const INITIAL_BADGES: Badge[] = [
 export const INITIAL_CERTIFICATES: NFTCertificate[] = [
   {
     id: "nft-1",
-    title: "Growth Master Certificate",
+    title: "Thrive Mode Calibration Professional",
     issueDate: "2026-05-20",
-    recipient: "Alpha Builder",
-    hash: "0x8fa4...cd3e",
-    skills: ["Habit Loops", "Neuroscience of Discipline", "Stoic Sprints"],
+    recipient: "Alpha Candidate",
+    hash: "RECIP-4821-DEC",
+    skills: ["Circadian Integration", "Macro Nutrition Metrics", "Cardiovascular Fitness Sprints"],
     type: "growth"
   },
   {
     id: "nft-2",
-    title: "Mindset Alignment Credential",
+    title: "Discipline Ledger Credential",
     issueDate: "2026-05-24",
-    recipient: "Alpha Builder",
-    hash: "0xac20...eb81",
-    skills: ["Active Stillness", "Stoic Meditation", "Purpose Calibration"],
+    recipient: "Alpha Candidate",
+    hash: "RECIP-8793-DIS",
+    skills: ["Daily Aligned Stillness", "Compound Literature Audits", "Value Asset Engineering"],
     type: "mindset"
   }
 ];
