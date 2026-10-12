@@ -8,7 +8,9 @@ import {
   Coins, 
   QrCode, 
   CheckCircle, 
-  ShoppingBag
+  ShoppingBag,
+  ShieldCheck,
+  Lock
 } from "lucide-react";
 import { 
   INITIAL_BADGES, 
@@ -215,39 +217,39 @@ export default function Rewards() {
               Have you compiled sufficient consistency multipliers on-grid? Redeem your XP points below to order custom printed materials and crafted assets:
             </p>
 
-            <div className="space-y-4" id="rewards-store-list">
+            <div className="space-y-3.5" id="rewards-store-list">
               {storeItems.map((item) => (
                 <div 
                   key={item.id}
-                  className="p-4 rounded-2xl border border-slate-850 bg-[#0c1524]/40 hover:border-slate-800 flex items-center justify-between transition-all shadow-md"
+                  className="p-3.5 sm:p-4 rounded-xl border border-white/10 bg-[#0c1524]/70 hover:border-[#14B8A6]/40 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-md"
                 >
-                  <div className="flex items-center gap-4 text-left">
-                    <div className="w-12 h-12 rounded-xl bg-slate-950 border border-slate-850 flex items-center justify-center text-xl shrink-0">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="w-10 h-10 rounded-lg bg-slate-900 border border-white/10 flex items-center justify-center text-lg shrink-0">
                       {item.icon}
                     </div>
-                    <div>
-                      <h4 className="font-display font-bold text-xs sm:text-sm text-white">{item.name}</h4>
-                      <span className="font-mono text-[9px] text-slate-500 block mt-1 uppercase tracking-wider font-extrabold">
-                        Vested Stock: {item.stock} items remaining
+                    <div className="min-w-0 text-left">
+                      <h4 className="font-display font-bold text-xs sm:text-sm text-white truncate">{item.name}</h4>
+                      <span className="font-mono text-[9px] text-slate-400 block mt-0.5 uppercase tracking-wider">
+                        Available Stock: <strong className="text-slate-300 font-bold">{item.stock} left</strong>
                       </span>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3">
-                    <span className="font-mono text-xs font-bold text-[#14B8A6] bg-[#0D9488]/15 border border-[#0D9488]/25 px-2.5 py-1 rounded-full shrink-0">
+                  <div className="flex items-center justify-between sm:justify-end gap-2.5 shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-white/5">
+                    <span className="font-mono text-xs font-bold text-[#14B8A6] bg-[#0D9488]/15 border border-[#0D9488]/30 px-2.5 py-1 rounded-md shrink-0">
                       {item.cost} XP
                     </span>
                     <button
                       onClick={() => redeemStoreItem(item.id, item.cost)}
                       disabled={item.redeemed || userXP < item.cost}
-                      className={`px-4 py-2 rounded-xl font-extrabold text-xs tracking-wider transition-all cursor-pointer shrink-0 ${
+                      className={`px-3.5 py-1.5 rounded-lg font-extrabold text-xs tracking-wider transition-all cursor-pointer shrink-0 ${
                         item.redeemed 
-                          ? "bg-slate-900 text-slate-300 border border-slate-800" 
-                          : "bg-gradient-to-r from-emerald-400 to-[#0D9488] text-slate-950 hover:brightness-110 disabled:opacity-45"
+                          ? "bg-slate-900 text-slate-400 border border-white/10 cursor-not-allowed" 
+                          : "bg-gradient-to-r from-emerald-400 to-[#0D9488] text-slate-950 hover:brightness-110 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed shadow-sm"
                       }`}
                       id={`redeem-store-button-${item.id}`}
                     >
-                      {item.redeemed ? "Claimed ✓" : "Redeem Item"}
+                      {item.redeemed ? "Claimed ✓" : "Redeem Voucher"}
                     </button>
                   </div>
                 </div>
@@ -266,28 +268,48 @@ export default function Rewards() {
               Achievement records verifying your resilience levels, directly published to your profile:
             </p>
 
-            <div className="bg-slate-950/40 rounded-2xl p-5 border border-slate-850 space-y-4">
+            <div className="bg-slate-950/70 rounded-2xl p-4 sm:p-5 border border-white/10 space-y-3 shadow-lg">
               {unlockedBadges.map((badge) => {
                 const isUnlocked = badge.unlockedAt !== null;
                 return (
                   <div 
                     key={badge.id}
-                    className={`p-4 rounded-xl border text-left flex items-start gap-4 transition-all ${
+                    className={`p-3.5 rounded-xl border text-left flex items-start gap-3.5 transition-all ${
                       isUnlocked 
-                        ? "bg-[#0c1524]/60 border-[#14B8A6]/20 shadow-sm" 
-                        : "bg-[#0b121f]/30 border-slate-900 opacity-45"
+                        ? "bg-[#0c1524]/80 border-[#14B8A6]/30 shadow-[0_0_15px_rgba(20,184,166,0.08)]" 
+                        : "bg-[#08101a]/50 border-white/5"
                     }`}
                   >
-                    <div className={`p-2 rounded-lg shrink-0 ${isUnlocked ? "bg-[#0D9488]/15 text-[#14B8A6]" : "bg-slate-900 text-slate-500"}`}>
-                      {badge.iconType === "fire" ? <Flame className="w-5 h-5" /> : badge.iconType === "shield" ? <CheckCircle className="w-5 h-5 fill-transparent text-[#14B8A6]" /> : <Award className="w-5 h-5" />}
+                    <div className={`p-2.5 rounded-lg shrink-0 ${
+                      isUnlocked 
+                        ? "bg-[#0D9488]/20 border border-[#0D9488]/30 text-[#14B8A6]" 
+                        : "bg-slate-900/80 border border-white/5 text-slate-500"
+                    }`}>
+                      {badge.iconType === "fire" ? (
+                        <Flame className="w-4.5 h-4.5" />
+                      ) : badge.iconType === "shield" ? (
+                        <ShieldCheck className="w-4.5 h-4.5" />
+                      ) : isUnlocked ? (
+                        <Award className="w-4.5 h-4.5" />
+                      ) : (
+                        <Lock className="w-4.5 h-4.5" />
+                      )}
                     </div>
-                    <div>
-                      <h4 className="font-display font-bold text-xs text-white flex items-center gap-1.5 flex-wrap">
-                        <span>{badge.title}</span>
-                        {isUnlocked && <span className="text-[9.5px] font-mono text-[#14B8A6] font-bold">★ VERIFIED MASTER</span>}
-                      </h4>
-                      <p className="text-[10.5px] text-slate-400 mt-1 leading-normal font-sans">{badge.description}</p>
-                      <span className="block text-[8.5px] font-mono text-slate-500 mt-2 font-bold uppercase tracking-wider">
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center justify-between gap-2 flex-wrap">
+                        <h4 className="font-display font-bold text-xs sm:text-sm text-white">{badge.title}</h4>
+                        {isUnlocked ? (
+                          <span className="text-[9px] font-mono text-[#14B8A6] font-extrabold px-1.5 py-0.5 rounded bg-[#14B8A6]/10 border border-[#14B8A6]/20">
+                            ★ VERIFIED
+                          </span>
+                        ) : (
+                          <span className="text-[9px] font-mono text-slate-500 font-bold px-1.5 py-0.5 rounded bg-white/5 border border-white/5">
+                            🔒 LOCKED
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-[11px] text-slate-400 mt-1 leading-normal font-sans">{badge.description}</p>
+                      <span className="block text-[9px] font-mono text-slate-400 mt-2 font-semibold">
                         {isUnlocked ? `Calibrated: ${badge.unlockedAt}` : `Requirement: ${badge.requirement}`}
                       </span>
                     </div>

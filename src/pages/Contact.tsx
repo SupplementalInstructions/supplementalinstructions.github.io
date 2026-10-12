@@ -91,6 +91,28 @@ export default function Contact() {
       console.warn("Storage error:", err);
     }
 
+    // Dispatch to official Gmail: supplementalinstructionllc@gmail.com
+    try {
+      fetch("https://formsubmit.co/ajax/supplementalinstructionllc@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({
+          _subject: `New S-H Candidate Admission: ${name.trim()} (${priorityKey})`,
+          applicant_name: name.trim(),
+          applicant_email: email.trim(),
+          focus_track: focusArea,
+          priority_id: priorityKey,
+          target_inbox: "supplementalinstructionllc@gmail.com",
+          submitted_at: new Date().toLocaleString()
+        })
+      }).catch(err => console.log("Admissions Gmail dispatch notice:", err));
+    } catch {
+      // Non-blocking fallback
+    }
+
     setQueuePriority(priorityKey);
     setSubmitSuccess(true);
   };
@@ -370,10 +392,23 @@ export default function Contact() {
                 </div>
 
                 <p className="text-[11px] text-slate-400 leading-relaxed mb-6 font-sans">
-                  We have catalogued and queued your details. To fast-track your evaluation and speak directly with Valentine Mogaka, tap below:
+                  Your admissions file has been recorded and routed to <strong className="text-white font-mono">supplementalinstructionllc@gmail.com</strong>. To fast-track your intake or message directly, tap below:
                 </p>
 
-                <div className="space-y-3">
+                <div className="space-y-2.5">
+                  <a
+                    href={`mailto:supplementalinstructionllc@gmail.com?subject=${encodeURIComponent(
+                      `Candidate Admission File: ${name} [${queuePriority}]`
+                    )}&body=${encodeURIComponent(
+                      `Hello Admissions Director,\n\nI have submitted my candidate admissions file for Supplemental Instruction:\n\n• Applicant Name: ${name}\n• Email: ${email}\n• Focus Track: ${focusArea}\n• Priority ID: ${queuePriority}\n\nPlease confirm my intake appointment coordinates.`
+                    )}`}
+                    className="w-full py-3 px-4 bg-white/5 hover:bg-white/10 border border-white/15 hover:border-cyan-400/40 text-white font-bold text-xs tracking-wider uppercase rounded-xl flex items-center justify-center gap-2 transition-all"
+                    id="email-admissions-button"
+                  >
+                    <Mail className="w-4 h-4 text-cyan-400" />
+                    <span>Send to supplementalinstructionllc@gmail.com</span>
+                  </a>
+
                   <a
                     href={`https://wa.me/14708125814?text=${encodeURIComponent(
                       `Hello Valentine,\n\nI just submitted my candidate application for Supplemental Instruction!\n\n• Name: ${name}\n• Email: ${email}\n• Focus Track: ${focusArea}\n• Priority ID: ${queuePriority}\n\nLooking forward to getting my initial calibration evaluation.`
@@ -389,7 +424,7 @@ export default function Contact() {
 
                   <button 
                     onClick={resetContactForm}
-                    className="w-full py-3 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold text-xs tracking-wider uppercase rounded-xl transition-all cursor-pointer"
+                    className="w-full py-2.5 bg-transparent hover:bg-white/5 border border-white/5 text-slate-400 hover:text-white font-semibold text-xs tracking-wider uppercase rounded-xl transition-all cursor-pointer"
                     id="success-return-button"
                   >
                     Return to Portal

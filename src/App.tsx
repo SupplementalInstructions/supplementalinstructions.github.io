@@ -12,6 +12,7 @@ import Features from "./pages/Features";
 import Coaching from "./pages/Coaching";
 import Rewards from "./pages/Rewards";
 import Contact from "./pages/Contact";
+import Admin from "./pages/Admin";
 import { 
   MessageSquare, 
   X, 
@@ -189,6 +190,7 @@ export default function App() {
             <Route path="/coaching" element={<Coaching />} />
             <Route path="/rewards" element={<Rewards />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/admin" element={<Admin />} />
           </Routes>
         </main>
 

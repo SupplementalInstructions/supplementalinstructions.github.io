@@ -72,6 +72,7 @@ export default function Footer() {
               <Link to="/coaching" className="hover:text-white transition-colors">Certified Advisors</Link>
               <Link to="/rewards" className="hover:text-white transition-colors">XP & Badges Hub</Link>
               <Link to="/contact" className="hover:text-white transition-colors">Early Access Application</Link>
+              <Link to="/admin" className="hover:text-[#14B8A6] transition-colors font-mono text-[11px] text-slate-500 pt-1">Staff Admin Console →</Link>
             </div>
           </div>
 
