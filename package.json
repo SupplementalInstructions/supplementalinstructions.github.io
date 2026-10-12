@@ -11,7 +11,7 @@
     "clean": "node -e \"const fs=require('fs'); fs.existsSync('dist')&&fs.rmSync('dist', {recursive:true, force:true});\"",
     "lint": "tsc --noEmit",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist -b master"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",
