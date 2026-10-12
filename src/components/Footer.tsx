@@ -31,31 +31,31 @@ export default function Footer() {
 
             <div className="flex items-center gap-3 mt-2">
               <a 
-                href="https://github.com" 
+                href="https://github.com/supplementalinstructions/supplementalinstructions.github.io" 
                 target="_blank" 
                 rel="noreferrer"
                 className="p-1.5 rounded bg-white/5 hover:bg-white/10 hover:text-white transition-colors"
-                aria-label="Github Profile Link"
+                aria-label="GitHub Repository Link"
               >
                 <Github className="w-4 h-4" />
               </a>
               <a 
-                href="https://linkedin.com" 
-                target="_blank" 
-                rel="noreferrer"
-                className="p-1.5 rounded bg-white/5 hover:bg-white/10 hover:text-[#00D1FF] transition-colors"
-                aria-label="LinkedIn Profile Link"
-              >
-                <Linkedin className="w-4 h-4" />
-              </a>
-              <a 
-                href="https://whatsapp.com" 
+                href="https://chat.whatsapp.com/Cv5VheVyx0U91bIc8H0Vqi" 
                 target="_blank" 
                 rel="noreferrer"
                 className="p-1.5 rounded bg-white/5 hover:bg-white/10 hover:text-[#2ECC71] transition-colors"
-                aria-label="WhatsApp Contact Link"
+                aria-label="WhatsApp Community Link"
               >
                 <MessageSquare className="w-4 h-4" />
+              </a>
+              <a 
+                href="https://wa.me/14708125814" 
+                target="_blank" 
+                rel="noreferrer"
+                className="p-1.5 rounded bg-white/5 hover:bg-white/10 hover:text-[#00D1FF] transition-colors"
+                aria-label="Founder Direct Desk Link"
+              >
+                <Cpu className="w-4 h-4" />
               </a>
             </div>
           </div>

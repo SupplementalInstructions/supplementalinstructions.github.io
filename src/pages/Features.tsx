@@ -35,18 +35,34 @@ export default function Features() {
     selectedLevel: "Level 1: Foundation Sprints"
   });
 
-  // State for MOCK CAROUSEL/INTERACTION 2: Live interactive habit checklist tracker
-  const [habitsData, setHabitsData] = useState([
-    { id: "h1", name: "Perform waked alignment breathwork", done: true, xp: 20 },
-    { id: "h2", name: "Read 10 pages of Stoic literature", done: false, xp: 25 },
-    { id: "h3", name: "Log daily budget ratios in spreadsheet", done: true, xp: 15 },
-    { id: "h4", name: "15-minute present-moment stills", done: false, xp: 20 },
-  ]);
+  // State for MOCK CAROUSEL/INTERACTION 2: Live interactive habit checklist tracker with persistence
+  const [habitsData, setHabitsData] = useState(() => {
+    try {
+      const saved = localStorage.getItem("supplemental_features_habits");
+      if (saved) return JSON.parse(saved);
+    } catch {
+      // fallback
+    }
+    return [
+      { id: "h1", name: "Perform waked alignment breathwork", done: true, xp: 20 },
+      { id: "h2", name: "Read 10 pages of Stoic literature", done: false, xp: 25 },
+      { id: "h3", name: "Log daily budget ratios in spreadsheet", done: true, xp: 15 },
+      { id: "h4", name: "15-minute present-moment stills", done: false, xp: 20 },
+    ];
+  });
 
   const toggleHabit = (id: string) => {
-    setHabitsData(prev => prev.map(item => 
-      item.id === id ? { ...item, done: !item.done } : item
-    ));
+    setHabitsData(prev => {
+      const nextHabits = prev.map(item => 
+        item.id === id ? { ...item, done: !item.done } : item
+      );
+      try {
+        localStorage.setItem("supplemental_features_habits", JSON.stringify(nextHabits));
+      } catch {
+        // fallback
+      }
+      return nextHabits;
+    });
   };
   
   const habitsCompleted = habitsData.filter(h => h.done).length;

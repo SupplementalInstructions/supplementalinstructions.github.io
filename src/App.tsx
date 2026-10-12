@@ -100,23 +100,33 @@ function FloatingCommunityWidget() {
             {/* Action Targets */}
             <div className="space-y-2">
               <a 
-                href="https://wa.me/254700000000" // Simulated premium WhatsApp community invite
-                target="_blank"
+                href="https://chat.whatsapp.com/Cv5VheVyx0U91bIc8H0Vqi" 
+                target="_blank" 
                 rel="noopener noreferrer"
                 className="w-full py-3 px-4 bg-[#2ECC71] hover:bg-[#2ECC71]/90 text-[#08111F] font-bold rounded-xl text-xs tracking-wide flex items-center justify-center gap-2 transition-all transition-transform duration-200 active:scale-95"
               >
                 <MessageSquare className="w-4 h-4" />
-                <span>Join WhatsApp Accountability Space</span>
+                <span>Join Official WhatsApp Community</span>
               </a>
 
               <a 
-                href="https://t.me" // Public Telegram group placeholder
-                target="_blank"
+                href="https://wa.me/14708125814?text=Hello%20Valentine%2C%20I%20am%20interested%20in%20the%20Supplemental%20Instruction%20Laboratory%20programs" 
+                target="_blank" 
                 rel="noopener noreferrer"
-                className="w-full py-2.5 px-4 bg-white/5 hover:bg-white/10 border border-white/5 text-white font-bold rounded-xl text-xs tracking-wide flex items-center justify-center gap-2 transition-all"
+                className="w-full py-2.5 px-4 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold rounded-xl text-xs tracking-wide flex items-center justify-center gap-2 transition-all hover:border-[#00D1FF]/40"
               >
-                <Sparkles className="w-3.5 h-3.5 text-[#00D1FF]" />
-                <span>Join Global Telegram Channel</span>
+                <Zap className="w-3.5 h-3.5 text-[#00D1FF]" />
+                <span>Direct Desk (+1 470 812-5814)</span>
+              </a>
+
+              <a 
+                href="https://whatsapp.com/channel/0029VbCz7sK6mYPQwzf08t2w" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-full py-2 px-4 bg-transparent hover:bg-white/5 text-[#94A3B8] hover:text-white font-medium rounded-xl text-[11px] tracking-wide flex items-center justify-center gap-1.5 transition-all"
+              >
+                <Sparkles className="w-3 h-3 text-cyan-400" />
+                <span>Subscribe to S-H Broadcast Channel</span>
               </a>
             </div>
 

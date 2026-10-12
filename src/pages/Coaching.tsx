@@ -64,6 +64,22 @@ export default function Coaching() {
   };
 
   const executeBookingConfirmation = () => {
+    if (bookingCoach) {
+      try {
+        const newBooking = {
+          coachId: bookingCoach.id,
+          coachName: bookingCoach.name,
+          date: selectedDate,
+          timeSlot: selectedTimeSlot,
+          intention: userIntentionText.trim(),
+          bookedAt: new Date().toISOString(),
+        };
+        const existing = JSON.parse(localStorage.getItem("supplemental_coaching_bookings") || "[]");
+        localStorage.setItem("supplemental_coaching_bookings", JSON.stringify([newBooking, ...existing]));
+      } catch (err) {
+        console.warn("Storage error:", err);
+      }
+    }
     setBookingStep(3); // Success Screen
   };
 
@@ -405,13 +421,28 @@ export default function Coaching() {
                       <span>Prepare your workspace to receive your printed handbook guides.</span>
                     </div>
 
-                    <button 
-                      onClick={closeBookingModal}
-                      className="px-8 py-3.5 bg-gradient-to-r from-emerald-400 to-[#0D9488] text-slate-950 font-extrabold rounded-xl text-xs tracking-wider uppercase cursor-pointer w-full hover:brightness-110 transition-all"
-                      id="finish-booking-modal-button"
-                    >
-                      Return to Advisors Directory
-                    </button>
+                    <div className="space-y-3">
+                      <a
+                        href={`https://wa.me/14708125814?text=${encodeURIComponent(
+                          `Hello Valentine,\n\nI just scheduled an Advisory Alignment session on Supplemental Instruction!\n\n• Advisor: ${bookingCoach?.name}\n• Date: ${selectedDate}\n• Slot: ${selectedTimeSlot}\n• Note: ${userIntentionText || "Ready for calibration"}\n\nPlease confirm my intake appointment coordinates.`
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-6 py-3.5 bg-[#2ECC71] hover:bg-[#2ECC71]/90 text-[#08111F] font-extrabold rounded-xl text-xs tracking-wider uppercase cursor-pointer w-full flex items-center justify-center gap-2 transition-all shadow-lg"
+                        id="coaching-whatsapp-confirm-button"
+                      >
+                        <PhoneCall className="w-4 h-4" />
+                        <span>Confirm Slot on WhatsApp</span>
+                      </a>
+
+                      <button 
+                        onClick={closeBookingModal}
+                        className="px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold rounded-xl text-xs tracking-wider uppercase cursor-pointer w-full transition-all"
+                        id="finish-booking-modal-button"
+                      >
+                        Return to Advisors Directory
+                      </button>
+                    </div>
                   </div>
                 )}
 

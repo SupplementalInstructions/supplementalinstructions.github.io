@@ -24,18 +24,34 @@ import {
 import useSEO from "../hooks/useSEO";
 
 export default function Home() {
-  // Interactive sample Thrive Mode checklist matching Version 1 screenshot values
-  const [thriveTasks, setThriveTasks] = useState([
-    { id: 1, text: "Perform 12-min high intense cardio", done: true, value: 15, category: "Thrive Mode" },
-    { id: 2, text: "Compounding value calculators checked", done: false, value: 25, category: "Alchemy Entrepreneurship" },
-    { id: 3, text: "Active deep focus sprint: 25 mins", done: true, value: 20, category: "Reading Culture" },
-    { id: 4, text: "Stoic gratitude reflection logged", done: false, value: 15, category: "Mental Wellness" }
-  ]);
+  // Interactive sample Thrive Mode checklist with persistent local storage
+  const [thriveTasks, setThriveTasks] = useState(() => {
+    try {
+      const saved = localStorage.getItem("supplemental_home_tasks");
+      if (saved) return JSON.parse(saved);
+    } catch {
+      // fallback to initial defaults
+    }
+    return [
+      { id: 1, text: "Perform 12-min high intense cardio", done: true, value: 15, category: "Thrive Mode" },
+      { id: 2, text: "Compounding value calculators checked", done: false, value: 25, category: "Alchemy Entrepreneurship" },
+      { id: 3, text: "Active deep focus sprint: 25 mins", done: true, value: 20, category: "Reading Culture" },
+      { id: 4, text: "Stoic gratitude reflection logged", done: false, value: 15, category: "Mental Wellness" }
+    ];
+  });
 
   const toggleTask = (id: number) => {
-    setThriveTasks(prev => prev.map(task => 
-      task.id === id ? { ...task, done: !task.done } : task
-    ));
+    setThriveTasks(prev => {
+      const nextTasks = prev.map(task => 
+        task.id === id ? { ...task, done: !task.done } : task
+      );
+      try {
+        localStorage.setItem("supplemental_home_tasks", JSON.stringify(nextTasks));
+      } catch {
+        // storage ignored if blocked
+      }
+      return nextTasks;
+    });
   };
 
   const completedCount = thriveTasks.filter(t => t.done).length;

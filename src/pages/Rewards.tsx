@@ -24,18 +24,38 @@ export default function Rewards() {
     description: "Review your active growth badges, verified Stoic study milestones, and redeemable certificates built to keep you focused on your target metrics.",
   });
 
-  // Stats
-  const [userXP, setUserXP] = useState<number>(650);
-  const [userStreaks, setUserStreaks] = useState<number>(12);
+  // Stats with localStorage persistence
+  const [userXP, setUserXP] = useState<number>(() => {
+    try {
+      const saved = localStorage.getItem("supplemental_user_xp");
+      if (saved) return parseInt(saved, 10);
+    } catch {}
+    return 650;
+  });
+
+  const [userStreaks, setUserStreaks] = useState<number>(() => {
+    try {
+      const saved = localStorage.getItem("supplemental_user_streaks");
+      if (saved) return parseInt(saved, 10);
+    } catch {}
+    return 12;
+  });
+
   const [unlockedBadges] = useState<Badge[]>(INITIAL_BADGES);
   const [selectedNFT, setSelectedNFT] = useState<NFTCertificate>(INITIAL_CERTIFICATES[0]);
 
-  // Premium store items list for using accumulated points
-  const [storeItems, setStoreItems] = useState([
-    { id: "s1", name: "S-H Sovereign Member Medal Pin (Shipped)", cost: 200, icon: "🎖️", stock: 12, redeemed: false },
-    { id: "s2", name: "Structured Travel Financial Ledger (Print Copy)", cost: 350, icon: "📓", stock: 8, redeemed: false },
-    { id: "s3", name: "Curated Present-Focus Bookmarks pack", cost: 150, icon: "🔖", stock: 24, redeemed: false }
-  ]);
+  // Premium store items list with persistence
+  const [storeItems, setStoreItems] = useState(() => {
+    try {
+      const saved = localStorage.getItem("supplemental_store_items");
+      if (saved) return JSON.parse(saved);
+    } catch {}
+    return [
+      { id: "s1", name: "S-H Sovereign Member Medal Pin (Shipped)", cost: 200, icon: "🎖️", stock: 12, redeemed: false },
+      { id: "s2", name: "Structured Travel Financial Ledger (Print Copy)", cost: 350, icon: "📓", stock: 8, redeemed: false },
+      { id: "s3", name: "Curated Present-Focus Bookmarks pack", cost: 150, icon: "🔖", stock: 24, redeemed: false }
+    ];
+  });
 
   const [notification, setNotification] = useState<string | null>(null);
 
@@ -45,10 +65,22 @@ export default function Rewards() {
       return;
     }
 
-    setUserXP(prev => prev - cost);
-    setStoreItems(prev => prev.map(item => 
-      item.id === itemId ? { ...item, redeemed: true, stock: item.stock - 1 } : item
-    ));
+    const nextXP = userXP - cost;
+    setUserXP(nextXP);
+    try {
+      localStorage.setItem("supplemental_user_xp", nextXP.toString());
+    } catch {}
+
+    setStoreItems(prev => {
+      const nextItems = prev.map(item => 
+        item.id === itemId ? { ...item, redeemed: true, stock: item.stock - 1 } : item
+      );
+      try {
+        localStorage.setItem("supplemental_store_items", JSON.stringify(nextItems));
+      } catch {}
+      return nextItems;
+    });
+
     triggerNotification(`🎉 Success! Redeemed: ${storeItems.find(i => i.id === itemId)?.name}`);
   };
 
@@ -58,8 +90,14 @@ export default function Rewards() {
   };
 
   const incrementDailyStreakTester = () => {
-    setUserStreaks(prev => prev + 1);
-    setUserXP(prev => prev + 15);
+    const nextStreak = userStreaks + 1;
+    const nextXP = userXP + 15;
+    setUserStreaks(nextStreak);
+    setUserXP(nextXP);
+    try {
+      localStorage.setItem("supplemental_user_streaks", nextStreak.toString());
+      localStorage.setItem("supplemental_user_xp", nextXP.toString());
+    } catch {}
     triggerNotification("🔥 Daily Check-In Calibrated! +15 XP Granted.");
   };
 

@@ -14,7 +14,7 @@ export default function useSEO({
   description,
   ogTitle,
   ogDescription,
-  ogImage = "https://supplementalinstructions.github.io/images/default-og.png",
+  ogImage = "https://supplementalinstructions.github.io/images/default-og.svg",
   ogUrl,
 }: SEOProps) {
   useEffect(() => {

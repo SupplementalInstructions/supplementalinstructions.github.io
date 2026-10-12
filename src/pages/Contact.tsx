@@ -75,6 +75,22 @@ export default function Contact() {
 
     // Generate simulated Priority Key
     const priorityKey = `SH-2026-${Math.floor(1000 + Math.random() * 9000)}`;
+    
+    // Save to localStorage so leads are never lost
+    try {
+      const newLead = {
+        id: priorityKey,
+        name: name.trim(),
+        email: email.trim(),
+        focusArea,
+        createdAt: new Date().toISOString(),
+      };
+      const existing = JSON.parse(localStorage.getItem("supplemental_admissions_leads") || "[]");
+      localStorage.setItem("supplemental_admissions_leads", JSON.stringify([newLead, ...existing]));
+    } catch (err) {
+      console.warn("Storage error:", err);
+    }
+
     setQueuePriority(priorityKey);
     setSubmitSuccess(true);
   };
@@ -354,16 +370,31 @@ export default function Contact() {
                 </div>
 
                 <p className="text-[11px] text-slate-400 leading-relaxed mb-6 font-sans">
-                  We have catalogued and queued your details. Our founder or a performance director will text you coordinates regarding introductory appointments inside 24 hours.
+                  We have catalogued and queued your details. To fast-track your evaluation and speak directly with Valentine Mogaka, tap below:
                 </p>
 
-                <button 
-                  onClick={resetContactForm}
-                  className="w-full py-4 bg-gradient-to-r from-emerald-400 to-[#0D9488] text-slate-950 font-extrabold text-xs tracking-wider uppercase rounded-xl transition-all cursor-pointer hover:brightness-110"
-                  id="success-return-button"
-                >
-                  Return to Admissions Portal
-                </button>
+                <div className="space-y-3">
+                  <a
+                    href={`https://wa.me/14708125814?text=${encodeURIComponent(
+                      `Hello Valentine,\n\nI just submitted my candidate application for Supplemental Instruction!\n\n• Name: ${name}\n• Email: ${email}\n• Focus Track: ${focusArea}\n• Priority ID: ${queuePriority}\n\nLooking forward to getting my initial calibration evaluation.`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-3.5 px-4 bg-[#2ECC71] hover:bg-[#2ECC71]/90 text-[#08111F] font-extrabold text-xs tracking-wider uppercase rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-emerald-950/20"
+                    id="whatsapp-fast-track-button"
+                  >
+                    <MessageSquare className="w-4 h-4" />
+                    <span>Fast-Track on WhatsApp Desk</span>
+                  </a>
+
+                  <button 
+                    onClick={resetContactForm}
+                    className="w-full py-3 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold text-xs tracking-wider uppercase rounded-xl transition-all cursor-pointer"
+                    id="success-return-button"
+                  >
+                    Return to Portal
+                  </button>
+                </div>
 
               </motion.div>
             </div>
