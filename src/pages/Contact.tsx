@@ -91,9 +91,9 @@ export default function Contact() {
       console.warn("Storage error:", err);
     }
 
-    // Dispatch to official Gmail: supplementalinstructionllc@gmail.com
+    // Dispatch to official Gmail via secure FormSubmit token (prevents scraping)
     try {
-      fetch("https://formsubmit.co/ajax/supplementalinstructionllc@gmail.com", {
+      fetch("https://formsubmit.co/ajax/37d746dcec0045aec1de9d8688b2cdc4", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -105,7 +105,6 @@ export default function Contact() {
           applicant_email: email.trim(),
           focus_track: focusArea,
           priority_id: priorityKey,
-          target_inbox: "supplementalinstructionllc@gmail.com",
           submitted_at: new Date().toLocaleString()
         })
       }).catch(err => console.log("Admissions Gmail dispatch notice:", err));
