@@ -21,3 +21,8 @@ yarn-error.log*
 # Secrets, Environment Variables & Local Overrides
 .env*
 !.env.example
+
+# Client Backups & Editor Settings
+*.zip
+.vscode/
+Supplemental-Instructions/
